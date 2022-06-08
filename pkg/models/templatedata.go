@@ -2,13 +2,12 @@ package models
 
 //TemplateData holds data sent from handlers to templates
 type TemplateData struct {
-	IntMap map[string]int
+	IntMap    map[string]int
 	StringMap map[string]string
 	FloatMap  map[string]float32
-	Data map[string]interface{}
+	Data      map[string]interface{}
 	CSRFToken string
-	Flash string
-	Warning string
-	Error string
-
+	Flash     string
+	Warning   string
+	Error     string
 }

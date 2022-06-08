@@ -7,9 +7,9 @@ import (
 )
 
 func WriteToConsole(next http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request){
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Hit the page")
-		next.ServeHTTP(w,r)
+		next.ServeHTTP(w, r)
 	})
 }
 
@@ -19,8 +19,8 @@ func NoServe(next http.Handler) http.Handler {
 
 	csrfHandler.SetBaseCookie(http.Cookie{
 		HttpOnly: true,
-		Path: "/",
-		Secure: app.InProduction,
+		Path:     "/",
+		Secure:   app.InProduction,
 		SameSite: http.SameSiteLaxMode,
 	})
 	return csrfHandler

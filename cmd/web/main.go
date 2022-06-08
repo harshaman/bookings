@@ -2,15 +2,16 @@ package main
 
 import (
 	"github.com/alexedwards/scs/v2"
-	"log"
-	"net/http"
 	"github.com/harshaman/bookings/pkg/config"
 	"github.com/harshaman/bookings/pkg/handlers"
 	"github.com/harshaman/bookings/pkg/render"
+	"log"
+	"net/http"
 	"time"
 )
 
 const port = ":8080"
+
 var app config.AppConfig
 var session *scs.SessionManager
 
@@ -19,11 +20,11 @@ func main() {
 	//change this to true when in production
 	app.InProduction = true
 
-	session =scs.New()
+	session = scs.New()
 	session.Lifetime = 24 * time.Hour
-	session.Cookie.Persist =  true
+	session.Cookie.Persist = true
 	session.Cookie.SameSite = http.SameSiteLaxMode
-	session.Cookie.Secure =  app.InProduction
+	session.Cookie.Secure = app.InProduction
 
 	app.Session = session
 
@@ -42,7 +43,7 @@ func main() {
 	render.NewTemplates(&app)
 
 	srv := &http.Server{
-		Addr: port,
+		Addr:    port,
 		Handler: routes(&app),
 	}
 
